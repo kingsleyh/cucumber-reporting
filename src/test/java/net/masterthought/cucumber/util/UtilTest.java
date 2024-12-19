@@ -82,4 +82,16 @@ class UtilTest extends PageTest {
         // then
         assertThat(reducedHooks).isEmpty();
     }
+
+    @Test
+    public void formatDuration_FormatsDifferentDurations() {
+        // Arrange
+        final long[] durations = {0, 1000, 60000, 3600000, 86400000};
+        String[] formatted = {"0.000", "0.001", "1.000", "60.000", "1440.000"};
+
+        // Act, Assert
+        for (int i = 0; i < durations.length; i++) {
+            assertThat(Util.formatDuration(durations[i])).isEqualTo(formatted[i]);
+        }
+    }
 }
